@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "qLwNmEEakeEYnZDWOWQOkujDZxL0pIJ1VgqcG9deQHs=",
+  "Source": "TalentFlow.Api",
+  "BasePath": "_content/TalentFlow.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
