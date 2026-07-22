@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net8.0": {
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
@@ -447,19 +447,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/sanilkagimhan/.nuget/packages/": {}
+    "C:\\Users\\DELL\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sanilkagimhan/Desktop/sf application/TalentFlowAI-Team/backend/TalentFlow.Api/TalentFlow.Api.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\TalentFlowAI-Team\\backend\\TalentFlow.Api\\TalentFlow.Api.csproj",
       "projectName": "TalentFlow.Api",
-      "projectPath": "/Users/sanilkagimhan/Desktop/sf application/TalentFlowAI-Team/backend/TalentFlow.Api/TalentFlow.Api.csproj",
-      "packagesPath": "/Users/sanilkagimhan/.nuget/packages/",
-      "outputPath": "/Users/sanilkagimhan/Desktop/sf application/TalentFlowAI-Team/backend/TalentFlow.Api/obj/",
+      "projectPath": "C:\\Users\\DELL\\TalentFlowAI-Team\\backend\\TalentFlow.Api\\TalentFlow.Api.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DELL\\TalentFlowAI-Team\\backend\\TalentFlow.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/sanilkagimhan/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -469,6 +469,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {}
         }
@@ -482,10 +483,12 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net8.0": {
+        "framework": "net8.0",
         "targetAlias": "net8.0",
         "dependencies": {
           "Swashbuckle.AspNetCore": {
@@ -504,6 +507,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.29, 8.0.29]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[8.0.29, 8.0.29]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.29, 8.0.29]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.29, 8.0.29]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -512,7 +533,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.422/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
