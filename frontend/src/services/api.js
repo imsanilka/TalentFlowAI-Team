@@ -1,5 +1,5 @@
 export const API_BASE_URL =
-  import.meta.env.VITE_API_URL ?? "https://localhost:7048/api";
+  import.meta.env.VITE_API_URL ?? "http://localhost:5198/api";
 
 export async function apiRequest(path, options = {}) {
   const token = localStorage.getItem("talentflow_token");
