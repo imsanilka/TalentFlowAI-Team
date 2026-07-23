@@ -549,6 +549,150 @@
   font-weight: 750;
 }
 
+.role-feedback {
+  margin: 0 0 20px;
+  padding: 13px 16px;
+  border: 1px solid;
+  border-radius: 11px;
+  font-weight: 750;
+}
+
+.role-feedback.success {
+  color: #087258;
+  background: #ddf7ee;
+  border-color: #b7e9d8;
+}
+
+.role-feedback.error {
+  color: #a02b3b;
+  background: #fff0f2;
+  border-color: #f4c3ca;
+}
+
+.published-jobs {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e7ecf5;
+}
+
+.published-jobs > h3 {
+  margin: 0 0 15px;
+  color: #1b2945;
+  font-size: 1rem;
+}
+
+.role-empty {
+  margin: 0;
+  color: #748199;
+  font-size: 0.88rem;
+}
+
+.role-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow-y: auto;
+  background: rgb(10 22 48 / 62%);
+  backdrop-filter: blur(4px);
+}
+
+.role-modal {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 48px);
+  padding: 28px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #dce4f2;
+  border-radius: 19px;
+  box-shadow: 0 28px 80px rgb(5 18 48 / 32%);
+}
+
+.role-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 23px;
+}
+
+.role-modal-header h2 {
+  margin: 4px 0 6px;
+  color: #101d38;
+  font-size: 1.65rem;
+}
+
+.role-modal-header p:last-child {
+  margin: 0;
+  color: #68758c;
+}
+
+.role-modal-close {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: #536079;
+  background: #f2f5fa;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1.65rem;
+  cursor: pointer;
+}
+
+.role-field input,
+.role-field select,
+.role-field textarea {
+  width: 100%;
+  padding: 12px 13px;
+  color: #17243f;
+  background: #fff;
+  border: 1px solid #cfd9e9;
+  border-radius: 9px;
+  font: inherit;
+}
+
+.role-field textarea {
+  resize: vertical;
+}
+
+.role-field input:focus,
+.role-field select:focus,
+.role-field textarea:focus {
+  border-color: #3156d9;
+  outline: 3px solid rgb(49 86 217 / 12%);
+}
+
+.role-field small {
+  color: #748199;
+}
+
+.role-submit {
+  min-height: 44px;
+  padding: 11px 18px;
+  color: #fff;
+  background: #3156d9;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.role-submit:hover {
+  background: #2448c2;
+}
+
+.role-submit:disabled,
+.role-action-secondary:disabled,
+.role-modal-close:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .status-control {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 230px;
@@ -638,6 +782,16 @@
 
   .role-field.full {
     grid-column: auto;
+  }
+
+  .role-modal-backdrop {
+    align-items: start;
+    padding: 12px;
+  }
+
+  .role-modal {
+    max-height: none;
+    padding: 22px;
   }
 }
 

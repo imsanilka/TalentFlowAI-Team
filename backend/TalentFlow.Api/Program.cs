@@ -18,7 +18,21 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ?? throw new InvalidOperationException(
             "DefaultConnection connection string is missing.")));
 
+var allowedOrigins = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>()
+    ?? new[] { "http://localhost:5173" };
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy
+            .WithOrigins(allowedOrigins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -143,6 +157,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("Frontend");
 
 /*
 Authentication must come before authorization:
@@ -155,4 +170,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

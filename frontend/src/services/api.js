@@ -2,7 +2,7 @@ export const API_BASE_URL =
   import.meta.env.VITE_API_URL ?? "http://localhost:5198/api";
 
 export async function apiRequest(path, options = {}) {
-  const token = localStorage.getItem("talentflow_token");
+  const token = sessionStorage.getItem("talentflow_token");
 
   const headers = {
     Accept: "application/json",
@@ -32,6 +32,10 @@ export async function apiRequest(path, options = {}) {
     : await response.text();
 
   if (!response.ok) {
+    if (response.status === 401 && token) {
+      window.dispatchEvent(new Event("talentflow:unauthorized"));
+    }
+
     const message =
       typeof data === "object" && data?.message
         ? data.message
