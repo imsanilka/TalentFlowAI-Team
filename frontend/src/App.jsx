@@ -1,17 +1,28 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import AppShell from "./components/AppShell";
 import HomePage from "./pages/HomePage";
 import RolePlaceholder from "./pages/RolePlaceholder";
+
+import RecruiterDashboard from "./pages/RecruiterDashboard";
+import HiringManagerDashboard from "./pages/HiringManagerDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+
+import ApplicationStatus from "./pages/ApplicationStatus";
+import InterviewEvaluation from "./pages/InterviewEvaluation";
+import UserManagement from "./pages/UserManagement";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route element={<AppShell />}>
+
           <Route index element={<HomePage />} />
 
           <Route
-            path="candidate/*"
+            path="candidate"
             element={
               <RolePlaceholder
                 title="Candidate workspace"
@@ -21,33 +32,33 @@ export default function App() {
           />
 
           <Route
-            path="recruiter/*"
-            element={
-              <RolePlaceholder
-                title="Recruiter workspace"
-                owner="staff frontend"
-              />
-            }
+            path="recruiter"
+            element={<RecruiterDashboard />}
           />
 
           <Route
-            path="manager/*"
-            element={
-              <RolePlaceholder
-                title="Hiring manager workspace"
-                owner="staff frontend"
-              />
-            }
+            path="manager"
+            element={<HiringManagerDashboard />}
           />
 
           <Route
-            path="admin/*"
-            element={
-              <RolePlaceholder
-                title="Administrator workspace"
-                owner="staff frontend"
-              />
-            }
+            path="admin"
+            element={<AdminDashboard />}
+          />
+
+          <Route
+            path="application-status"
+            element={<ApplicationStatus />}
+          />
+
+          <Route
+            path="interview-evaluation"
+            element={<InterviewEvaluation />}
+          />
+
+          <Route
+            path="user-management"
+            element={<UserManagement />}
           />
 
           <Route
@@ -59,9 +70,10 @@ export default function App() {
               />
             }
           />
+
         </Route>
+
       </Routes>
     </BrowserRouter>
   );
 }
-
