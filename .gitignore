@@ -19,3 +19,7 @@ dist/
 
 # Local secrets
 appsettings.Local.json
+
+.vs/
+**/.vs/
+.env
