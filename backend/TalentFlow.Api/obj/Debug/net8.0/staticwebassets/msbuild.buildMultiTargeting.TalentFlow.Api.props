@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/TalentFlow.Api.props" />
-</Project>
