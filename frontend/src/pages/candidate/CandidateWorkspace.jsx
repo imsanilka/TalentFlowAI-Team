@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link, NavLink, Route, Routes, useLocation, useNavigate, useParams } from "react-router-dom";
+import useAuth from "../../auth/useAuth";
 import { initialApplications, jobs, statusOrder } from "./candidateData";
 import "./candidate.css";
 
@@ -16,6 +17,14 @@ function Icon({ name }) {
 }
 
 function CandidateHeader() {
+  const { user } = useAuth();
+  const initials = user.fullName
+    .split(" ")
+    .map((part) => part.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <div className="candidate-header">
       <div>
@@ -23,8 +32,8 @@ function CandidateHeader() {
         <h1>Build your next chapter</h1>
       </div>
       <div className="candidate-user" aria-label="Signed in candidate">
-        <span className="avatar" aria-hidden="true">DS</span>
-        <span><strong>Dinitha Rathnayaka</strong><small>Candidate</small></span>
+        <span className="avatar" aria-hidden="true">{initials}</span>
+        <span><strong>{user.fullName}</strong><small>Candidate</small></span>
       </div>
     </div>
   );
@@ -173,9 +182,22 @@ function ApplicationsPage({ applications }) {
 }
 
 function ProfilePage() {
+  const { user } = useAuth();
+  const nameParts = user.fullName.trim().split(/\s+/);
+  const firstName = nameParts.shift() ?? "";
+  const lastName = nameParts.join(" ");
   const [saved, setSaved] = useState(false);
   const [errors, setErrors] = useState({});
-  const [profile, setProfile] = useState({ firstName: "Dinitha", lastName: "Rathnayaka", email: "dinitha@example.com", phone: "+94 77 000 0000", location: "Bandarawela, Sri Lanka", headline: "Computer Science undergraduate | Aspiring UI/UX Engineer", summary: "Computer Science student interested in creating accessible, useful digital products.", skills: "UI/UX Design, Figma, React, JavaScript, Git" });
+  const [profile, setProfile] = useState(() => ({
+    firstName,
+    lastName,
+    email: user.email,
+    phone: "",
+    location: "Colombo, Sri Lanka",
+    headline: "Computer Science undergraduate | Aspiring technology professional",
+    summary: "Computer Science student interested in creating accessible, useful digital products.",
+    skills: "React, JavaScript, SQL, Git",
+  }));
   const update = (event) => {
     setProfile({ ...profile, [event.target.name]: event.target.value });
     if (errors[event.target.name]) setErrors({ ...errors, [event.target.name]: "" });

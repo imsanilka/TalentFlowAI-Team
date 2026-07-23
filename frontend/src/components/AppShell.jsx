@@ -1,25 +1,50 @@
 import { NavLink, Outlet } from "react-router-dom";
+import useAuth from "../auth/useAuth";
+import { getRoleHome } from "../auth/authContext";
 import "../App.css";
 
-const navigation = [
-  { to: "/", label: "Home", icon: "⌂", end: true },
-  { to: "/candidate", label: "Candidate", icon: "◉" },
-  { to: "/recruiter", label: "Recruiter", icon: "▣" },
-  { to: "/manager", label: "Hiring Manager", icon: "◇" },
-  { to: "/admin", label: "Administrator", icon: "⚙" },
-];
+const roleNavigation = {
+  Candidate: [
+    { to: "/candidate", label: "Overview", icon: "⌂", end: true },
+  ],
+  Recruiter: [
+    { to: "/recruiter", label: "Overview", icon: "⌂", end: true },
+    { to: "/application-status", label: "Hiring pipeline", icon: "▤" },
+  ],
+  HiringManager: [
+    { to: "/manager", label: "Overview", icon: "⌂", end: true },
+    { to: "/interview-evaluation", label: "Evaluations", icon: "✓" },
+  ],
+  Administrator: [
+    { to: "/admin", label: "Overview", icon: "⌂", end: true },
+    { to: "/user-management", label: "User management", icon: "◎" },
+  ],
+};
+
+function formatRole(role) {
+  return role === "HiringManager" ? "Hiring Manager" : role;
+}
 
 export default function AppShell() {
+  const { user, logout } = useAuth();
+  const navigation = roleNavigation[user.role] ?? [];
+  const initials = user.fullName
+    .split(" ")
+    .map((part) => part.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <aside className="sidebar">
         <div>
           <div className="brand">
-            <span className="brand-icon" aria-hidden="true">✦</span>
+            <NavLink className="brand-icon" to={getRoleHome(user.role)} aria-label="TalentFlow AI home">✦</NavLink>
             <span className="brand-copy"><strong>TalentFlow AI</strong><small>Recruitment platform</small></span>
           </div>
-          <p className="nav-label">Workspaces</p>
+          <p className="nav-label">{formatRole(user.role)} workspace</p>
           <nav className="navigation" aria-label="Main navigation">
             {navigation.map((item) => (
               <NavLink
@@ -34,15 +59,23 @@ export default function AppShell() {
             ))}
           </nav>
         </div>
-        <div className="sidebar-footer">
-          <span className="sidebar-status" aria-hidden="true" />
-          <span><strong>Talent intelligence online</strong><small>Data synchronized securely</small></span>
+        <div className="sidebar-account">
+          <div className="sidebar-user">
+            <span className="account-avatar" aria-hidden="true">{initials}</span>
+            <span><strong>{user.fullName}</strong><small>{formatRole(user.role)}</small></span>
+          </div>
+          <button className="logout-button" type="button" onClick={logout}>
+            <span aria-hidden="true">↪</span> Sign out
+          </button>
         </div>
       </aside>
       <div className="workspace">
         <header className="topbar">
-          <div><strong>TalentFlow AI</strong><span className="topbar-subtitle">Secure team workspace</span></div>
-          <span className="status-badge"><span aria-hidden="true">●</span> System online</span>
+          <div><strong>TalentFlow AI</strong><span className="topbar-subtitle">Secure {formatRole(user.role).toLowerCase()} workspace</span></div>
+          <div className="topbar-account">
+            <span className="status-badge"><span aria-hidden="true">●</span> System online</span>
+            <span className="topbar-user"><strong>{user.fullName}</strong><small>{formatRole(user.role)}</small></span>
+          </div>
         </header>
         <main className="content" id="main-content" tabIndex="-1"><Outlet /></main>
       </div>
