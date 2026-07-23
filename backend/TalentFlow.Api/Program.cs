@@ -18,8 +18,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         ?? throw new InvalidOperationException(
             "DefaultConnection connection string is missing.")));
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddControllers();
+
 
 builder.Services.AddEndpointsApiExplorer();
 
